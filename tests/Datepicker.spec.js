@@ -19,7 +19,7 @@ test("Date picker", async ({page})=>
     //Choosing date, month & year
     const selected_date = 25
     const selected_month = 9
-    const selected_year =2000
+    const selected_year =2045
 
     //while statement
     while(true)
@@ -50,9 +50,12 @@ test("Date picker", async ({page})=>
                 const next_button = page.locator(".datepicker-years th.next")
                 await next_button.click()
             }}  
-            await page.getByText(selected_year.toString(),{exact:true}).first().click()//to convert number to string use toString()
-            await page.locator(".month").nth(selected_month-1).click()
-            await page.locator(".datepicker-days td.day", { hasText: "25" }).click();
+            //await page.getByText(selected_year.toString(),{exact:true}).first().click()//to convert number to string use toString()
+           // await page.locator(".datepicker-years .year").nth(1).click()
+            await page.locator(".datepicker-years .year",{hasText:selected_year.toString()}).click()
+            gawait page.locator(".month").nth(selected_month-1).click()
+            //await page.locator(".datepicker-days td.day", { hasText: "25" }).click();
+            await page.locator(".datepicker-days td.day", { hasText: selected_date.toString()}).click();
             await page.pause()
 
 })
